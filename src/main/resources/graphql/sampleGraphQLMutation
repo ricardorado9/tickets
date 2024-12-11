@@ -1,0 +1,17 @@
+mutation CreateTicket {
+    createTicket(ticket: { usuario: "prueba", status: ABIERTO }) {
+        id
+        usuario
+        fechaCreacion
+        fechaActualizacion
+        status
+    }
+    updateTicket(ticket: { id: "4", status: CERRADO }) {
+        id
+        usuario
+        fechaCreacion
+        fechaActualizacion
+        status
+    }
+    deleteTicket(id: "4")
+}

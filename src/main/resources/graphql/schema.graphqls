@@ -1,0 +1,71 @@
+input TicketInputCreate {
+    usuario: String!
+    status: Status!
+}
+
+input TicketInputEdit  {
+    id: ID!
+    status: Status!
+}
+
+input TicketFilter {
+    id: ID
+    usuario: String
+    status: Status
+    pageNumber: Int!
+}
+
+type Ticket {
+    id: ID!
+    usuario: String!
+    fechaCreacion: String!
+    fechaActualizacion: String!
+    status: Status!
+}
+
+enum Status {
+    ABIERTO
+    CERRADO
+}
+
+type User
+{
+    totalCount: Int
+    incompleteResults: Boolean
+    items: [Item]
+}
+
+type Item
+{
+    login:String
+    id:String
+    nodeId:String
+    avatarUrl:String
+    gravatarId:String
+    url:String
+    htmlUrl:String
+    followersUrl:String
+    followingUrl:String
+    gistsUrl:String
+    starredUrl:String
+    subscriptionsUrl:String
+    organizationsUrl:String
+    eventsUrl:String
+    receivedEventsUrl:String
+    type:String
+    userViewType:String
+    siteAdmin:Boolean
+    score:Int
+}
+
+type Query {
+    getTickets(filter: TicketFilter = { pageNumber: 0 }): [Ticket]
+    getUsers(q: String!): User
+}
+
+type Mutation {
+    createTicket(ticket: TicketInputCreate!): Ticket
+    updateTicket(ticket: TicketInputEdit!): Ticket
+    deleteTicket(id: ID!): String
+}
+
